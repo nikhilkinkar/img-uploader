@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <div class="form-group">
+                  <input class="form-control-file" type='file' #fileimport (change)="onSelectFile($event)" multiple accept=".png,.jgp,.jpeg">
+              </div>
+              <button class="btn btn-sm btn-primary" (click)="uploadFiles()">Upload</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-columns">
+            <div *ngFor="let url of urls, let i = index" class="card" style="position: relative;">
+              <div class="close" (click)="removeIt(i)">
+                &times;
+              </div>
+              <img [src]="url" class="rounded mb-3" width="180">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h3>Images from DB</h3>
+          <span class="text-danger">"X" deletes image from DB</span>
+        </div>
+        <div class="card-body">
+          <div class="card-columns">
+            <div class="card" *ngFor="let obj of showDBImages,let i = index">
+              <h5 class="card-title">{{obj.name}}</h5>
+              <div class="close" (click)="deleteIt(obj._id,i)">
+                &times;
+              </div>
+              <img [src]="obj.data" width="180" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
